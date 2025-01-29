@@ -3,6 +3,7 @@
 namespace App\Livewire\Species;
 
 use App\Models\Specie;
+use App\Rules\CaseInsensitiveRule;
 use Livewire\Component;
 
 class CreateSpecie extends Component
@@ -12,7 +13,7 @@ class CreateSpecie extends Component
     public function save()
     {
         $validated = $this->validate([
-            'name' => ['required', 'max: 100'],
+            'name' => ['required', 'max: 100', new CaseInsensitiveRule('name', 'species')],
         ]);
 
         Specie::create($validated);
