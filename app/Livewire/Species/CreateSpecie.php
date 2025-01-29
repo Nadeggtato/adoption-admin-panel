@@ -4,9 +4,9 @@ namespace App\Livewire\Species;
 
 use App\Models\Specie;
 use App\Rules\CaseInsensitiveRule;
-use Livewire\Component;
+use LivewireUI\Modal\ModalComponent;
 
-class CreateSpecie extends Component
+class CreateSpecie extends ModalComponent
 {
     public $name;
 
@@ -18,9 +18,24 @@ class CreateSpecie extends Component
 
         Specie::create($validated);
 
-        return redirect()->to(route('species.create'));
+        $this->dispatch('specie-created');
+        $this->closeModal();
     }
 
+    public static function closeModalOnClickAway(): bool
+    {
+        return false;
+    }
+
+    public static function destroyOnClose(): bool
+    {
+        return true;
+    }
+
+    public static function modalMaxWidth(): string
+    {
+        return 'lg';
+    }
 
     public function render()
     {
