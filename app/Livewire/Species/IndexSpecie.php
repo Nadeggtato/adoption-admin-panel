@@ -15,10 +15,10 @@ class IndexSpecie extends Component
         $this->fetchSpecies();
     }
 
-    #[On('specie-created')]
+    #[On('species-updated')]
     public function fetchSpecies()
     {
-        $this->species = Specie::all();
+        $this->species = Specie::orderByRaw('LOWER(name)')->get();
     }
 
     public function render()

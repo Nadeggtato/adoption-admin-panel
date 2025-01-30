@@ -22,7 +22,9 @@
               {{ $specie->name }}
             </th>
             <td class="px-6 py-4">
-              Actions
+              <button wire:click="$dispatch('openModal', { component: 'species.update-specie', arguments: { specie: '{{ $specie->id }}' }})">
+                Edit
+              </button>
             </td>
           </tr>
         @endforeach

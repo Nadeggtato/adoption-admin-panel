@@ -7,17 +7,19 @@ use Closure;
 use DB;
 use Illuminate\Contracts\Validation\ValidationRule;
 use Str;
-use function Laravel\Prompts\select;
 
 class CaseInsensitiveRule implements ValidationRule
 {
     private $column;
     private $tableName;
 
-    public function __construct($column, $tableName)
+    private $id;
+
+    public function __construct($column, $tableName, $id = null)
     {
         $this->column = $column;
         $this->tableName = $tableName;
+        $this->id = $id;
     }
 
     /**
@@ -27,13 +29,18 @@ class CaseInsensitiveRule implements ValidationRule
      */
     public function validate(string $attribute, mixed $value, Closure $fail): void
     {
-        $result = DB::select(
-            "SELECT {$this->column}
+        $query = "SELECT {$this->column}
             FROM {$this->tableName}
             WHERE {$this->column} ILIKE '$value' AND
-                deleted_at IS NULL
-            LIMIT 1"
-        );
+                deleted_at IS NULL ";
+
+        if (!empty($this->id)) {
+            $query .= "AND id != '{$this->id}' ";
+        }
+
+        $query .= "LIMIT 1";
+
+        $result = DB::select($query);
 
         if (count($result) > 0) {
             $fail(Str::ucfirst($this->column) . ' already exists.');

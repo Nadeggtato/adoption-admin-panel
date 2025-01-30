@@ -18,7 +18,7 @@ class CreateSpecie extends ModalComponent
 
         Specie::create($validated);
 
-        $this->dispatch('specie-created');
+        $this->dispatch('species-updated');
         $this->closeModal();
     }
 
