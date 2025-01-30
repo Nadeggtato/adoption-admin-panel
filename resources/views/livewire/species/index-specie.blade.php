@@ -22,8 +22,19 @@
               {{ $specie->name }}
             </th>
             <td class="px-6 py-4">
-              <button wire:click="$dispatch('openModal', { component: 'species.update-specie', arguments: { specie: '{{ $specie->id }}' }})">
+              <button
+                wire:click="$dispatch('openModal', {
+                  component: 'species.update-specie',
+                  arguments: { specie: '{{ $specie->id }}' }
+                })">
                 Edit
+              </button>
+              <button
+                wire:click="$dispatch('openModal', {
+                  component: 'species.delete-specie',
+                  arguments: { specie: '{{ $specie->id }}'}
+                })">
+                Delete
               </button>
             </td>
           </tr>
