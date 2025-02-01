@@ -1,7 +1,6 @@
 <div>
   <form wire:submit="save">
-    <input type="text" wire:model="name">
-    <div>@error('name') {{ $message }} @enderror</div>
+    <x-input-box name="name" wire:model="name"/>
     <button type="submit">Save</button>
   </form>
 </div>

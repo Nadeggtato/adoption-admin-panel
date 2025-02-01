@@ -10,6 +10,13 @@ class CreateSpecie extends ModalComponent
 {
     public $name;
 
+    public $title;
+
+    public function mount()
+    {
+        $this->title = 'Test';
+    }
+
     public function save()
     {
         $validated = $this->validate([
