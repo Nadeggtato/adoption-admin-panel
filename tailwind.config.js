@@ -20,4 +20,18 @@ export default {
         },
     },
     plugins: [],
+    safelist: [
+        'bg-green-800',
+        'border-green-700',
+        'hover:bg-green-50',
+        'dark:hover:bg-green-600',
+        'bg-yellow-800',
+        'border-yellow-700',
+        'hover:bg-yellow-50',
+        'dark:hover:bg-yellow-600',
+        'bg-red-800',
+        'border-red-700',
+        'hover:bg-red-50',
+        'dark:hover:bg-red-600',
+    ]
 };

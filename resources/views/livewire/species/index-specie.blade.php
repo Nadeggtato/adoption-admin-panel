@@ -2,7 +2,8 @@
   <div class="w-full mb-2 flex justify-end">
     <x-button
       text="Create"
-      wire:click="$dispatch('openModal', { component: 'species.create-specie', arguments: { title: 'Test' } })"/>
+      color="gray"
+      wire:click="$dispatch('openModal', { component: 'species.create-specie', arguments: { title: 'Create' } })"/>
   </div>
   <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
     <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
@@ -24,20 +25,20 @@
               {{ $specie->name }}
             </th>
             <td class="px-6 py-4">
-              <button
+              <x-button
+                text="Edit"
+                color="yellow"
                 wire:click="$dispatch('openModal', {
                   component: 'species.update-specie',
-                  arguments: { specie: '{{ $specie->id }}' }
-                })">
-                Edit
-              </button>
-              <button
+                  arguments: { specie: '{{ $specie->id }}', title: 'Edit' }
+              })"/>
+              <x-button
+                text="Delete"
+                color="red"
                 wire:click="$dispatch('openModal', {
                   component: 'species.delete-specie',
-                  arguments: { specie: '{{ $specie->id }}'}
-                })">
-                Delete
-              </button>
+                  arguments: { specie: '{{ $specie->id }}', title: 'Delete' }
+              })"/>
             </td>
           </tr>
         @endforeach

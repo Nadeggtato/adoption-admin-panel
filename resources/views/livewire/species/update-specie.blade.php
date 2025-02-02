@@ -1,7 +1,8 @@
 <div>
   <form wire:submit="save">
-    <input type="text" wire:model="name">
-    <div>@error('name') {{ $message }} @enderror</div>
-    <button type="submit">Save</button>
+    <x-input-box name="name" wire:model="name"/>
+    <div class="w-full my-2 flex justify-center">
+      <x-button text="Submit" color="green" type="submit"/>
+    </div>
   </form>
-  </div>
+</div>
